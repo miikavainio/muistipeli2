@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Muistipeli</title>
+    <link rel="stylesheet" href="styles.css" href="styles2.css" />
+    <link href='https://fonts.googleapis.com/css?family=Agbalumo' rel='stylesheet'>
+  </head>
+  <h1>RAMIN MUISTIPELI</h1>
+  <body>
+    <div class="memory-game">
+
+      <div class="memory-card" data-framework="astro">
+        <img class="front-face" src="img/astro.jpg" alt="astro" />
+        <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+      </div>
+      <div class="memory-card" data-framework="astro">
+        <img class="front-face" src="img/astro.jpg" alt="astro" />
+        <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+      </div>
+      <div class="memory-card" data-framework="tahti">
+        <img class="front-face" src="img/tahti2.jpg" alt="tahti" />
+        <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+      </div>
+      <div class="memory-card" data-framework="tahti">
+        <img class="front-face" src="img/tahti2.jpg" alt="tahti" />
+        <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+      </div>
+      <div class="memory-card" data-framework="kuu">
+        <img class="front-face" src="img/kuu2.jpg" alt="kuu" />
+        <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+      </div>
+      <div class="memory-card" data-framework="kuu">
+        <img class="front-face" src="img/kuu2.jpg" alt="kuu" />
+        <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+      </div>
+      <div class="memory-card" data-framework="back">
+        <img class="front-face" src="img/back.jpg" alt="hifk" />
+        <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+      </div>
+      <div class="memory-card" data-framework="back">
+        <img class="front-face" src="img/back.jpg" alt="hifk" />
+        <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+      </div>
+    </div>
+
+    <div class="congratulations-message" id="congratsMessage">
+      Onnittelut, voitit tason!
+    </div>
+    <button id="nextLevelButton" style="display: none;">Seuraava taso</button>
+    <script src="main.js"></script>
+  </body>
+</html>

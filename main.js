@@ -6,7 +6,7 @@ let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
 let matchedPairs = 0;
-let totalPairs = 4; // Initially 4 pairs
+let totalPairs = 3; // Initially 4 pairs
 let currentRound = 1; // Track current round
 
 function flipCard() {
@@ -33,9 +33,17 @@ function checkForMatch() {
     matchedPairs++;
     if (matchedPairs === totalPairs) {
       setTimeout(() => {
+        // Show congratulations message and the next level button
         congratsMessage.style.display = "block";
-        nextLevelButton.style.display = "block"; // Show the button to go to next level
-      }, 500);
+        nextLevelButton.style.display = "block";
+        
+        // Trigger confetti rain
+        confetti({
+          particleCount: 200,
+          spread: 150,
+          origin: { y: 0.6 }
+        });
+      }, 400);
     }
   } else {
     unflipCards();
@@ -70,6 +78,7 @@ function shuffle() {
   });
 }
 
+
 // Function to reset for the harder level with more pairs
 function startNextLevel() {
   matchedPairs = 0;
@@ -79,7 +88,7 @@ function startNextLevel() {
 
   const memoryGame = document.querySelector('.memory-game');
   if (currentRound === 2) {
-    totalPairs = 6;
+    totalPairs = 4;
     memoryGame.style.gridTemplateColumns = "repeat(4, 1fr)";
     memoryGame.innerHTML = `
     <div class="memory-card" data-framework="astro">
@@ -106,44 +115,20 @@ function startNextLevel() {
       <img class="front-face" src="img/kuu2.jpg" alt="kuu" />
       <img class="back-face" src="img/kys.jpg" alt="kysymys" />
     </div>
-    <div class="memory-card" data-framework="hifk">
-      <img class="front-face" src="img/back.jpg" alt="hifk" />
+    <div class="memory-card" data-framework="raketti">
+      <img class="front-face" src="img/raketti.jpg" alt="raketti" />
       <img class="back-face" src="img/kys.jpg" alt="kysymys" />
     </div>
-    <div class="memory-card" data-framework="hifk">
-      <img class="front-face" src="img/back.jpg" alt="hifk" />
-      <img class="back-face" src="img/kys.jpg" alt="kysymys" />
-    </div>
-    <div class="memory-card" data-framework="sun">
-      <img class="front-face" src="img/sun.jpg" alt="sun" />
-      <img class="back-face" src="img/kys.jpg" alt="kysymys" />
-    </div>
-    <div class="memory-card" data-framework="sun">
-      <img class="front-face" src="img/sun.jpg" alt="sun" />
-      <img class="back-face" src="img/kys.jpg" alt="kysymys" />
-    </div>
-    <div class="memory-card" data-framework="maapallo">
-      <img class="front-face" src="img/maapallo.jpg" alt="maapallo" />
-      <img class="back-face" src="img/kys.jpg" alt="kysymys" />
-    </div>
-    <div class="memory-card" data-framework="maapallo">
-      <img class="front-face" src="img/maapallo.jpg" alt="maapallo" />
+    <div class="memory-card" data-framework="raketti">
+      <img class="front-face" src="img/raketti.jpg" alt="raketti" />
       <img class="back-face" src="img/kys.jpg" alt="kysymys" />
     </div>
   `;
 
     } else if (currentRound === 3) {
-    totalPairs = 8;
-    memoryGame.style.gridTemplateColumns = "repeat(6, 1fr)";
+    totalPairs = 5;
+    memoryGame.style.gridTemplateColumns = "repeat(4, 1fr)";
     memoryGame.innerHTML = `
-    <div class="memory-card" data-framework="astro">
-      <img class="front-face" src="img/astro.jpg" alt="astro" />
-      <img class="back-face" src="img/kys.jpg" alt="kysymys" />
-    </div>
-    <div class="memory-card" data-framework="astro">
-      <img class="front-face" src="img/astro.jpg" alt="astro" />
-      <img class="back-face" src="img/kys.jpg" alt="kysymys" />
-    </div>
     <div class="memory-card" data-framework="tahti">
       <img class="front-face" src="img/tahti2.jpg" alt="tahti" />
       <img class="back-face" src="img/kys.jpg" alt="kysymys" />
@@ -158,14 +143,6 @@ function startNextLevel() {
     </div>
     <div class="memory-card" data-framework="kuu">
       <img class="front-face" src="img/kuu2.jpg" alt="kuu" />
-      <img class="back-face" src="img/kys.jpg" alt="kysymys" />
-    </div>
-    <div class="memory-card" data-framework="hifk">
-      <img class="front-face" src="img/back.jpg" alt="hifk" />
-      <img class="back-face" src="img/kys.jpg" alt="kysymys" />
-    </div>
-    <div class="memory-card" data-framework="hifk">
-      <img class="front-face" src="img/back.jpg" alt="hifk" />
       <img class="back-face" src="img/kys.jpg" alt="kysymys" />
     </div>
     <div class="memory-card" data-framework="sun">
@@ -190,17 +167,128 @@ function startNextLevel() {
     </div>
     <div class="memory-card" data-framework="raketti">
       <img class="front-face" src="img/raketti.jpg" alt="raketti" />
-      <img class="back-face" src="img/kys.jpg" alt="kysymys" />
-    </div>
-    <div class="memory-card" data-framework="mars">
-      <img class="front-face" src="img/mars.jpg" alt="mars" />
-      <img class="back-face" src="img/kys.jpg" alt="kysymys" />
-    </div>
-    <div class="memory-card" data-framework="mars">
-      <img class="front-face" src="img/mars.jpg" alt="mars" />
       <img class="back-face" src="img/kys.jpg" alt="kysymys" />
     </div>
   `;
+
+} else if (currentRound === 4) {
+  totalPairs = 6;
+  memoryGame.style.gridTemplateColumns = "repeat(4, 1fr)";
+  memoryGame.innerHTML = `
+
+  <div class="memory-card" data-framework="tahti">
+    <img class="front-face" src="img/tahti2.jpg" alt="tahti" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="tahti">
+    <img class="front-face" src="img/tahti2.jpg" alt="tahti" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="back">
+    <img class="front-face" src="img/back.jpg" alt="back" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="back">
+    <img class="front-face" src="img/back.jpg" alt="back" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="sun">
+    <img class="front-face" src="img/sun.jpg" alt="sun" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="sun">
+    <img class="front-face" src="img/sun.jpg" alt="sun" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="maapallo">
+    <img class="front-face" src="img/maapallo.jpg" alt="maapallo" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="maapallo">
+    <img class="front-face" src="img/maapallo.jpg" alt="maapallo" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="raketti">
+    <img class="front-face" src="img/raketti.jpg" alt="raketti" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="raketti">
+    <img class="front-face" src="img/raketti.jpg" alt="raketti" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="mars">
+    <img class="front-face" src="img/mars.jpg" alt="mars" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="mars">
+    <img class="front-face" src="img/mars.jpg" alt="mars" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+`;
+
+
+} else if (currentRound === 5) {
+  totalPairs = 7;
+  memoryGame.style.gridTemplateColumns = "repeat(5, 1fr)";
+  memoryGame.innerHTML = `
+
+  <div class="memory-card" data-framework="tahti">
+    <img class="front-face" src="img/tahti2.jpg" alt="tahti" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="tahti">
+    <img class="front-face" src="img/tahti2.jpg" alt="tahti" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="back">
+    <img class="front-face" src="img/back.jpg" alt="back" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="back">
+    <img class="front-face" src="img/back.jpg" alt="back" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="sun">
+    <img class="front-face" src="img/sun.jpg" alt="sun" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="sun">
+    <img class="front-face" src="img/sun.jpg" alt="sun" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="maapallo">
+    <img class="front-face" src="img/maapallo.jpg" alt="maapallo" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="maapallo">
+    <img class="front-face" src="img/maapallo.jpg" alt="maapallo" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="raketti">
+    <img class="front-face" src="img/raketti.jpg" alt="raketti" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="raketti">
+    <img class="front-face" src="img/raketti.jpg" alt="raketti" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="mars">
+    <img class="front-face" src="img/mars.jpg" alt="mars" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+  <div class="memory-card" data-framework="mars">
+    <img class="front-face" src="img/mars.jpg" alt="mars" />
+    <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+  </div>
+    <div class="memory-card" data-framework="kuu">
+      <img class="front-face" src="img/kuu2.jpg" alt="kuu" />
+      <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+    </div>
+    <div class="memory-card" data-framework="kuu">
+      <img class="front-face" src="img/kuu2.jpg" alt="kuu" />
+      <img class="back-face" src="img/kys.jpg" alt="kysymys" />
+    </div>
+`;
   }
   
   const newCards = document.querySelectorAll(".memory-card");
